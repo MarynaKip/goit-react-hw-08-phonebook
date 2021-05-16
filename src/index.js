@@ -1,4 +1,5 @@
-import React from "react";
+// import React, { Suspense } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "react-dom";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -22,7 +23,11 @@ const Root = () => (
   <AlertProvider template={AlertTemplate} {...options}>
     <Provider store={store}>
       {/* <PersistGate loading={null} persistor={persistor}> */}
-      <App />
+      <Router>
+        {/* <Suspense fallback={<div>Loading... </div>}> */}
+        <App />
+        {/* </Suspense> */}
+      </Router>
       {/* </PersistGate> */}
     </Provider>
   </AlertProvider>
