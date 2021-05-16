@@ -1,0 +1,2 @@
+(this["webpackJsonpgoit-react-hw-08-phonebook"]=this["webpackJsonpgoit-react-hw-08-phonebook"]||[]).push([[3],{82:function(e,t,o){"use strict";o.r(t);var n=o(4);t.default=function(){return Object(n.jsx)("p",{children:"Register Page"})}}}]);
+//# sourceMappingURL=register-page.04e47f83.chunk.js.map
