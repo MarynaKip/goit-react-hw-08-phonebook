@@ -18,22 +18,21 @@ export const routes = [
     label: "Contacts Page",
     component: ContactsPage,
     exact: true,
-    showInMenu: true,
     isProtected: true,
   },
   {
     path: "/login",
     label: "Login Page",
     component: LoginPage,
-    showInMenu: true,
     isProtected: false,
+    isNotLoggedOn: true,
   },
   {
     path: "/register",
     label: "Register Page",
     component: RegisterPage,
-    showInMenu: true,
     isProtected: false,
+    isNotLoggedOn: true,
   },
 ];
 

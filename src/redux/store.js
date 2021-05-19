@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import {
+  persistStore,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -25,4 +26,4 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === "development",
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);

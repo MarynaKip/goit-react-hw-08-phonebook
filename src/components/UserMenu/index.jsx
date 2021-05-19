@@ -1,13 +1,57 @@
+import { useSelector, useDispatch } from "react-redux";
 import { routes } from "../../routes";
 import { NavLink } from "react-router-dom";
+// import { A } from "hookrouter";
+import { createUseStyles } from "react-jss";
+import { logout } from "../../redux/user/operations";
+
+const useStyles = createUseStyles({
+  menu: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+  },
+  link: {
+    color: "green",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  button: {
+    width: "150px",
+    height: "25px",
+  },
+});
+
+const checkShowPage = (isProtected, isLoggedOn, isNotLoggedOn) => {
+  const showProtected = !isProtected || (isProtected && isLoggedOn);
+  const showLoggedOn = !isNotLoggedOn || (isNotLoggedOn && !isLoggedOn);
+
+  return showProtected && showLoggedOn;
+};
 
 const UserMenu = () => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const isLoggedOn = useSelector((state) => state.user.isLoggedOn);
+
+  const handleLogOut = () => dispatch(logout());
   return (
-    <div>
-      <p>User Menu</p>
-      {routes.map(
-        ({ path, exact, showInMenu, label, isProtected, isNotLoggedOn }) => {
-          return (
+    <div className={classes.container}>
+      <div className={classes.menu}>
+        <p>User Menu</p>
+        {routes.map(({ path, exact, label, isProtected, isNotLoggedOn }) => {
+          const showInMenu = checkShowPage(
+            isProtected,
+            isLoggedOn,
+            isNotLoggedOn
+          );
+
+          return showInMenu ? (
+            // <A href={path} key={path} className={classes.link}>
+            //   {label}
+            // </A>
             <NavLink
               //activeClassName={classes.active}
               key={path}
@@ -16,9 +60,12 @@ const UserMenu = () => {
             >
               {label}
             </NavLink>
-          );
-        }
-      )}
+          ) : null;
+        })}
+      </div>
+      <button className={classes.button} onClick={handleLogOut}>
+        Logout
+      </button>
     </div>
   );
 };
