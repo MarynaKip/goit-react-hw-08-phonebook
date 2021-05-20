@@ -14,6 +14,20 @@ const { actions, reducer } = createSlice({
   name: "user",
   initialState,
   reducers: {
+    fetchRegisterRequest: (state) => {
+      state.isLoading = true;
+    },
+    fetchRegisterSuccess: (state, action) => {
+      state.name = action.payload.user.name;
+      state.email = action.payload.user.email;
+      state.token = action.payload.token;
+      state.isLoggedOn = false;
+      state.isLoading = false;
+    },
+    fetchRegisterError: (state, action) => {
+      state.error = action.payload.message;
+      state.isLoading = false;
+    },
     fetchLoginRequest: (state) => {
       state.isLoading = true;
     },
@@ -63,6 +77,9 @@ const { actions, reducer } = createSlice({
 });
 
 export const {
+  fetchRegisterRequest,
+  fetchRegisterSuccess,
+  fetchRegisterError,
   fetchLoginRequest,
   fetchLoginSuccess,
   fetchLoginError,

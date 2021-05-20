@@ -2,6 +2,7 @@ import { createUseStyles } from "react-jss";
 import { useSelector, useDispatch } from "react-redux";
 import operations from "../../redux/phoneBook/operations";
 import { getContact } from "../../redux/phoneBook/selectors";
+import Button from "@material-ui/core/Button";
 
 const useStyles = createUseStyles({
   item: {
@@ -11,6 +12,9 @@ const useStyles = createUseStyles({
     justifyContent: "center",
     fontSize: "20px",
     color: "#b30047",
+  },
+  button: {
+    height: "25px",
   },
 });
 
@@ -27,14 +31,16 @@ const ContactItem = ({ contactID }) => {
     <li key={id} className={classes.item}>
       {name}
       {number}
-      <button
-        className="button"
+      <Button
+        className={classes.button}
         id={id}
         type="button"
         onClick={handleDeleteItem}
+        variant="contained"
+        color="primary"
       >
         Delete
-      </button>
+      </Button>
     </li>
   );
 };

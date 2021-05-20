@@ -17,6 +17,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
+
   return (
     <div>
       {isAuthorized ? (

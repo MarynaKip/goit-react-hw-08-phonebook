@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/user/operations";
+import Button from "@material-ui/core/Button";
 
 const useStyles = createUseStyles({
   login: {
@@ -17,6 +18,9 @@ const useStyles = createUseStyles({
   label: {
     display: "flex",
     justifyContent: "space-between",
+  },
+  button: {
+    height: "25px",
   },
 });
 
@@ -56,7 +60,14 @@ const LoginPage = () => {
               onChange={handleChangePassword}
             />
           </label>
-          <button type="submit">Login</button>
+          <Button
+            type="submit"
+            className={classes.button}
+            variant="contained"
+            color="primary"
+          >
+            Login
+          </Button>
         </form>
       )}
     </div>

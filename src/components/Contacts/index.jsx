@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { v4 as uuidv4 } from "uuid";
+import Button from "@material-ui/core/Button";
 import { getContacts } from "../../redux/phoneBook/selectors";
 import operations from "../../redux/phoneBook/operations";
 
@@ -75,9 +76,14 @@ const Contacts = () => {
             required
           />
         </label>
-        <button className="button" type="submit">
+        <Button
+          className="button"
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
           + Add
-        </button>
+        </Button>
       </form>
     </>
   );

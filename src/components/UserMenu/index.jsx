@@ -3,6 +3,7 @@ import { routes } from "../../routes";
 import { NavLink } from "react-router-dom";
 // import { A } from "hookrouter";
 import { createUseStyles } from "react-jss";
+import Button from "@material-ui/core/Button";
 import { logout } from "../../redux/user/operations";
 
 const useStyles = createUseStyles({
@@ -21,6 +22,9 @@ const useStyles = createUseStyles({
   button: {
     width: "150px",
     height: "25px",
+  },
+  active: {
+    color: "rgb(59, 138, 255)",
   },
 });
 
@@ -53,7 +57,7 @@ const UserMenu = () => {
             //   {label}
             // </A>
             <NavLink
-              //activeClassName={classes.active}
+              activeClassName={classes.active}
               key={path}
               exact={exact}
               to={path}
@@ -63,9 +67,14 @@ const UserMenu = () => {
           ) : null;
         })}
       </div>
-      <button className={classes.button} onClick={handleLogOut}>
+      <Button
+        onClick={handleLogOut}
+        className={classes.button}
+        variant="contained"
+        color="primary"
+      >
         Logout
-      </button>
+      </Button>
     </div>
   );
 };

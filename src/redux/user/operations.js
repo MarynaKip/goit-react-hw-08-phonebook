@@ -8,6 +8,21 @@ const setToken = (token) => {
   axios.defaults.headers.common["Authorization"] = token;
 };
 
+export const register = (payload) => (dispatch, getState) => {
+  dispatch(actions.fetchRegisterRequest());
+
+  axios
+    .post("/signup", payload)
+    .then(({ data }) => {
+      setToken(data.token);
+      dispatch(actions.fetchRegisterSuccess(data));
+    })
+    .catch((error) => {
+      toast.error(error.message);
+      dispatch(actions.fetchRegisterError(error.message));
+    });
+};
+
 export const login = (payload) => (dispatch, getState) => {
   dispatch(actions.fetchLoginRequest());
 
