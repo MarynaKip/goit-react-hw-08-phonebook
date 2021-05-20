@@ -1,3 +1,4 @@
+import { createUseStyles } from "react-jss";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +8,12 @@ import Button from "@material-ui/core/Button";
 import { getContacts } from "../../redux/phoneBook/selectors";
 import operations from "../../redux/phoneBook/operations";
 
+const useStyles = createUseStyles({
+  margin: {
+    marginRight: "15px",
+  },
+});
+
 const initialState = {
   id: "",
   name: "",
@@ -14,6 +21,8 @@ const initialState = {
 };
 
 const Contacts = () => {
+  const classes = useStyles();
+
   const alert = useAlert();
   const dispatch = useDispatch();
 
@@ -51,7 +60,7 @@ const Contacts = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className={classes.margin}>
           <span>Name:</span>
           <input
             type="text"
@@ -64,7 +73,7 @@ const Contacts = () => {
           />
         </label>
 
-        <label>
+        <label className={classes.margin}>
           <span>Number:</span>
           <input
             type="tel"

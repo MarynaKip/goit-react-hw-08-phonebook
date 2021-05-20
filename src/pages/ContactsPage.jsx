@@ -1,9 +1,10 @@
-import "../styles/HomePage.css";
 import { useSelector, useDispatch } from "react-redux";
 import Contacts from "../components/Contacts";
 import ContactList from "../components/ContactList";
 import actions from "../redux/phoneBook/actions";
 import { getFilter, getIsLoading } from "../redux/phoneBook/selectors";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,8 @@ const ContactsPage = () => {
   };
 
   return (
-    <>
-      <div className="formBar">
+    <Container maxWidth="md">
+      <Box bgcolor="info.main" color="info.contrastText" p={2}>
         <span>Find:</span>
         <input
           className="input"
@@ -32,11 +33,11 @@ const ContactsPage = () => {
           onChange={handleChange}
         />
         <Contacts />
-      </div>
+      </Box>
 
       {isLoading && <p>Loading...</p>}
       <ContactList />
-    </>
+    </Container>
   );
 };
 

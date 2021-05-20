@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import operations from "../../redux/phoneBook/operations";
 import { getContact } from "../../redux/phoneBook/selectors";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 
 const useStyles = createUseStyles({
   item: {
@@ -15,6 +16,9 @@ const useStyles = createUseStyles({
   },
   button: {
     height: "25px",
+  },
+  margin: {
+    marginRight: "15px",
   },
 });
 
@@ -29,8 +33,14 @@ const ContactItem = ({ contactID }) => {
 
   return (
     <li key={id} className={classes.item}>
-      {name}
-      {number}
+      <Box color="info.main" className={classes.margin}>
+        {name}
+      </Box>
+
+      <Box color="info.main" className={classes.margin}>
+        {number}
+      </Box>
+
       <Button
         className={classes.button}
         id={id}
