@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { routes } from "../../routes";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 // import { A } from "hookrouter";
 import { createUseStyles } from "react-jss";
 import Button from "@material-ui/core/Button";
@@ -95,14 +95,16 @@ const UserMenu = () => {
           ) : null;
         })}
       </Menu>
-      <Button
-        onClick={handleLogOut}
-        className={classes.button}
-        variant="contained"
-        color="primary"
-      >
-        Logout
-      </Button>
+      {isLoggedOn && (
+        <Button
+          onClick={handleLogOut}
+          className={classes.button}
+          variant="contained"
+          color="primary"
+        >
+          Logout
+        </Button>
+      )}
     </div>
   );
 };

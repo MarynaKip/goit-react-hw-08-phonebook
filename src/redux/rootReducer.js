@@ -8,7 +8,6 @@ import user from "./user";
 const phoneBookPersistConfig = {
   key: "phoneBook",
   storage,
-  whitelist: ["token"],
 };
 
 const phoneBookReducer = persistReducer(phoneBookPersistConfig, phoneBook);
@@ -16,6 +15,7 @@ const phoneBookReducer = persistReducer(phoneBookPersistConfig, phoneBook);
 const tokenPersistConfig = {
   key: "token",
   storage,
+  whitelist: ["token"],
 };
 
 const userReducer = persistReducer(tokenPersistConfig, user);

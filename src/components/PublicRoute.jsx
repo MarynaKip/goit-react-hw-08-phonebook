@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 const PublicRoute = (props) => {
   const isLoggedOn = useSelector((state) => state.user.isLoggedOn);
@@ -7,7 +7,9 @@ const PublicRoute = (props) => {
 
   return !isNotLoggedOn || (isNotLoggedOn && !isLoggedOn) ? (
     <Route {...props} />
-  ) : null;
+  ) : (
+    <Redirect to="/contacts" />
+  );
 };
 
 export default PublicRoute;

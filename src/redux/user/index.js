@@ -6,8 +6,9 @@ const initialState = {
   token: "",
   isLoggedOn: false,
   isLoading: true,
-  isAuthorized: true,
+  isAuthorizing: true,
   error: "",
+  // redirectToLogin: false,
 };
 
 const { actions, reducer } = createSlice({
@@ -21,12 +22,13 @@ const { actions, reducer } = createSlice({
       state.name = action.payload.user.name;
       state.email = action.payload.user.email;
       state.token = action.payload.token;
-      state.isLoggedOn = false;
+      state.isLoggedOn = true;
       state.isLoading = false;
     },
     fetchRegisterError: (state, action) => {
       state.error = action.payload.message;
       state.isLoading = false;
+      state.isLoggedOn = false;
     },
     fetchLoginRequest: (state) => {
       state.isLoading = true;
@@ -35,12 +37,13 @@ const { actions, reducer } = createSlice({
       state.name = action.payload.user.name;
       state.email = action.payload.user.email;
       state.token = action.payload.token;
-      state.isLoggedOn = false;
+      state.isLoggedOn = true;
       state.isLoading = false;
     },
     fetchLoginError: (state, action) => {
       state.error = action.payload.message;
       state.isLoading = false;
+      state.isLoggedOn = false;
     },
     fetchLogoutRequest: (state) => {
       state.isLoading = true;
@@ -51,27 +54,29 @@ const { actions, reducer } = createSlice({
       state.email = "";
       state.isLoggedOn = false;
       state.isLoading = false;
+      // state.redirectToLogin = false;
     },
     fetchLogoutError: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
     },
     fetchUserRequest: (state) => {
-      state.isAuthorized = true;
+      state.isAuthorizing = true;
     },
     fetchUserSuccess: (state, action) => {
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.isLoggedOn = true;
-      state.isAuthorized = false;
+      state.isAuthorizing = false;
     },
     fetchUserError: (state) => {
-      state.isAuthorized = false;
+      state.isAuthorizing = false;
       state.isLoggedOn = false;
       state.token = "";
     },
     fetchUserCancel: (state) => {
-      state.isAuthorized = false;
+      state.isAuthorizing = false;
+      state.isLoading = false;
     },
   },
 });

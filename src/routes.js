@@ -35,11 +35,3 @@ export const routes = [
     isNotLoggedOn: true,
   },
 ];
-
-// const Routes = {
-//   "/contacts": () => <ContactsPage />,
-//   "/login": () => <LoginPage />,
-//   "/register": () => <RegisterPage />,
-// };
-
-// export default Routes;
