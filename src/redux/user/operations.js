@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import * as actions from "./index";
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com/users";
+axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 const setToken = (token) => {
   axios.defaults.headers.common["Authorization"] = token;
@@ -12,7 +12,7 @@ export const register = (payload) => (dispatch, getState) => {
   dispatch(actions.fetchRegisterRequest());
 
   axios
-    .post("/signup", payload)
+    .post("/users/signup", payload)
     .then(({ data }) => {
       setToken(data.token);
       dispatch(actions.fetchRegisterSuccess(data));
@@ -27,7 +27,7 @@ export const login = (payload) => (dispatch, getState) => {
   dispatch(actions.fetchLoginRequest());
 
   axios
-    .post("/login", payload)
+    .post("/users/login", payload)
     .then(({ data }) => {
       setToken(data.token);
       dispatch(actions.fetchLoginSuccess(data));
@@ -42,7 +42,7 @@ export const logout = () => (dispatch, getState) => {
   dispatch(actions.fetchLogoutRequest());
 
   axios
-    .post("/logout")
+    .post("/users/logout")
     .then(() => dispatch(actions.fetchLogoutSuccess()))
     .catch((error) => {
       toast.error(error.message);
@@ -63,7 +63,7 @@ export const getCurrentUser = () => (dispatch, getState) => {
   setToken(token);
 
   axios
-    .get("/current")
+    .get("/users/current")
     .then(({ data }) => dispatch(actions.fetchUserSuccess(data)))
     .catch((error) => {
       toast.error(error.message);
